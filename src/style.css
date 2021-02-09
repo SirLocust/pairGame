@@ -1,0 +1,70 @@
+body{
+  background-color:rgb(87, 86, 86);
+  color:white;
+  
+}
+
+
+.container{
+  background-color: aquamarinez;
+  margin: auto;
+  height: 100vh;
+  width: 80vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card{
+  margin: 5px;
+  /* background-color: rgb(255, 255, 255); */
+  
+  border-radius: 10px;
+  
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(164, 164, 164);
+  height: 30px;
+  min-width: 40px;
+  cursor: pointer;
+}
+.card_off{
+  margin: 5px;
+  background-color: rgb(116, 116, 116);
+  
+  border-radius: 10px;
+  
+  color: rgb(152, 152, 152);
+  border: 1px solid rgb(140, 140, 140);
+  height: 30px;
+  min-width: 40px;
+  
+}
+.card_on{
+  color: rgb(0, 255, 85);
+  border: 1px solid rgb(0, 255, 85);
+  background-color: rgba(0, 255, 85, 0.112);
+}
+
+.card_fail{
+  color: rgb(255, 0, 204);
+  border: 1px solid rgb(255, 0, 204);
+  background-color: rgba(255, 0, 204, 0.188);
+}
+
+
+
+.card:hover{
+  background-color: rgb(167, 167, 167);
+}
+
+.centerContent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card_content{
+  margin-left: 5px;
+  margin-right: 5px;
+
+}
