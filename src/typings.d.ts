@@ -4,6 +4,11 @@ declare module '*.html' {
 }
 
 declare module '*.wav' {
-  const value: any;
+  const value: string;
+  export default value;
+}
+
+declare module '*.ogg' {
+  const value: string;
   export default value;
 }
