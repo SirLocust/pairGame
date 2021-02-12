@@ -3,6 +3,7 @@ import { Deck } from "./deck";
 export class UiRender{
 
   drawDeck(deck:Deck, deckHTML: HTMLDivElement): void{
+    deck.shuffled();
     deck.getDeck().forEach( (card) => {
       let div = document.createElement('div');
       div.classList.add('card','centerContent');

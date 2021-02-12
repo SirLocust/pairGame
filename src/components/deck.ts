@@ -24,4 +24,7 @@ export class Deck{
     let card = this.getDeck().filter( card => card.getId() === id)
     return card[0];
   }
+  shuffled(): void{
+    this.deck = [...this.deck].sort( () => Math.random() - 0.5)
+  }
 }
