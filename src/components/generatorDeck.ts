@@ -8,11 +8,11 @@ export class GeneratorDeck{
   deck: Deck
   ui:UiRender
   deckHtml: HTMLDivElement
-  formDeck = document.querySelectorAll('form input') as NodeListOf<HTMLInputElement>;
-  constructor(deck: Deck, UiRender: UiRender , deckHtml: HTMLDivElement){
+  formDeck = document.querySelectorAll('#formCreateDeck input') as NodeListOf<HTMLInputElement>;
+  constructor(deck: Deck, uiRender: UiRender , deckHtml: HTMLDivElement){
     this.deckHtml = deckHtml;
     this.deck = deck;
-    this.ui = UiRender;
+    this.ui = uiRender;
     this.btnCreate.addEventListener('click', () =>{
       this.createDeck(Array.from(this.formDeck));
       this.ui.drawDeck(deck,this.deckHtml);
@@ -21,12 +21,13 @@ export class GeneratorDeck{
 
   
   createDeck = (inputList: HTMLInputElement[]):void =>{
-  for(let input of  inputList){
+  
+  inputList.forEach( (input,index) => {
     if(Boolean(input.value)){
       let pairValue = input.getAttribute('data-pair')!
-      this.deck.addCard(new Card(pairValue,input.value));
+      this.deck.addCard(new Card(pairValue,input.value,index));
     }
-  }
+  })
 }
   
 }

@@ -1,11 +1,15 @@
+import { ICard } from './interface/Icard';
 import { Card } from "./card";
 
 export class Deck{
 
   deck: Card[];
-  
-  constructor(){
-    this.deck = [];
+  title: string
+  id: number
+  constructor( title: string, id: number,list :ICard[]){
+    this.title = title
+    this.id = id;
+    this.deck = this.deckFromJson(list);
   }
 
   getDeck(): Card[]{
@@ -21,10 +25,18 @@ export class Deck{
   }
 
   getCard(id:string): Card {
-    let card = this.getDeck().filter( card => card.getId() === id)
+    let card = this.getDeck().filter( cardElm => cardElm.getIdAsString() === id)
     return card[0];
   }
   shuffled(): void{
     this.deck = [...this.deck].sort( () => Math.random() - 0.5)
+  }
+
+  deckFromJson(list :ICard[]):Card[]{
+    let tmpDeck:Card[] = []
+    list.forEach( ({id,pairValue,content}) =>{
+      tmpDeck.push(new Card(pairValue,content,id))
+    })
+    return tmpDeck;
   }
 }

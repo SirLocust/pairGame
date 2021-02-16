@@ -1,6 +1,10 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
+  devServer: {
+    port: 4200,
+  },
+
   mode: 'development',
   resolve: {
     extensions: ['.js', '.ts'],

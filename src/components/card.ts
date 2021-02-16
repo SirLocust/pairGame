@@ -1,21 +1,25 @@
 import { ICard } from './interface/Icard';
 export class Card implements ICard{
 
-  static idCounter = 0;
-  id:string
+  // static idCounter = 0;
+  id:number
   content:string
   pairValue: string
-  constructor(pairValue:string,content:string){
+  constructor(pairValue:string,content:string,id:number){
     this.content = content;
     this.pairValue = pairValue;
-    Card.idCounter++;
-    this.id = Card.idCounter.toString()
+    this.id = id;
+    // Card.idCounter++;
+    // this.id = Card.idCounter.toString()
   }
 
   getPairValue(): string{
     return this.pairValue;
   }
-  getId(): string{
+  getIdAsString():string{
+    return this.id.toString()
+  }
+  getId(): number{
     return this.id;
   }
   getContent(): string{

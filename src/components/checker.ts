@@ -5,7 +5,7 @@ import soundGood from '../assets/sound/goodSound.ogg'
 export class Checker{
 
   count: number = 0;
-  card = new Card('0','0');
+  card = new Card('0','0',-1);
   deck: Deck;
   deckHTML: HTMLDivElement;
   failSound : HTMLAudioElement = new Audio(soundFail);
@@ -22,12 +22,12 @@ export class Checker{
 
   checking(event : MouseEvent):void{
     let card = event.target as HTMLDivElement;
-    
     if(!card.classList.contains('card_content')){
       return;
     }
     let cardHtml = card.parentElement!
     let idCard: string = cardHtml.getAttribute('id')!
+    console.log('s')
     this.count++
     this.statusPick(cardHtml, idCard);
 
@@ -40,7 +40,7 @@ export class Checker{
       this.firstSelectedCard(idCard,cardHtml);
     }
 
-    if(this.count ===  2 && this.card.getId() === idCard){
+    if(this.count ===  2 && this.card.getIdAsString() === idCard){
       
       this.sameSelectedCard(cardHtml);
     }
@@ -68,7 +68,7 @@ export class Checker{
       cardHtml?.classList.remove('card')
       cardHtml?.classList.add('card_off')
       cardHtml?.children[0].classList.remove('card_content')
-      let preCard = document.getElementById(this.card.getId());
+      let preCard = document.getElementById(this.card.getIdAsString());
       preCard?.classList.remove('card','card_on')
       preCard?.classList.add('card_off')
       preCard?.children[0].classList.remove('card_content')
@@ -76,7 +76,7 @@ export class Checker{
   }
   private wrongPairSelected(cardHtml:HTMLElement){
         this.failSound.play();
-        let preCard = document.getElementById(this.card.getId());
+        let preCard = document.getElementById(this.card.getIdAsString());
         preCard?.classList.remove('card_on')
         preCard?.classList.add('card_fail')
         setTimeout(()=>{
