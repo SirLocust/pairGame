@@ -54,4 +54,5 @@ const getDecks = async () =>{
 
 const any = (deck:Deck) => {
   alert(deck.id)
+  window.location.hash = '#/deckcreate'
 }

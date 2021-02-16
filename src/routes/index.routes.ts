@@ -1,3 +1,4 @@
+import { selectedDeck } from './../views/selectDeck';
 import { home } from './../views/home';
 
 
@@ -12,6 +13,7 @@ cleanHtml(rootContaier)
       rootContaier.appendChild(nodo);
       return ;
     case '#/deckcreate':
+      rootContaier.appendChild( await selectedDeck());
       return;
   }
 
