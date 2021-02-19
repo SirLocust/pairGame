@@ -1,20 +1,15 @@
-import { router } from './routes/index.routes';
+// import { router } from './routes/index.routes';
 // import { GeneratorDeck } from './components/generatorDeck';
 import './style.css';
 import './css/normalize.css'
 
-import homeTemplate from './html/home.html'
+import Router from './routes/index.routes';
 
-import { UiRender } from './components/uiRender';
-import { Deck } from './components/deck';
-import { Checker } from './components/checker';
-
-window.location.hash = '#/'
-
+const router = new Router();
 
 window.addEventListener('hashchange', (event : HashChangeEvent)=>{
-  
-  router(window.location.hash)
+  router.whatRouteIs(window.location.hash)
+  // router()
 })
 
 

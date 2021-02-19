@@ -7,23 +7,21 @@ import homeTemplate from '../html/home.html'
 export const home  = async () =>{
   
   let div = document.createElement('div')
+  div.classList.add('flex_Center_row');
+  div.insertAdjacentHTML('beforeend',homeTemplate)
+  let grid = div.querySelector('#listDeck') as HTMLDivElement;
 
-  let deckListJson = await getDecks() as IDeck[];
-  // console.log(await getDecks())
+  let deckListJson = await getDecks();
+  if(!deckListJson){
+    return div;
+  }
   let deckArray:Deck[] = [];
   
   deckListJson.forEach( (ele) => {
     let tmpDeck = new Deck(ele.title,ele.id,ele.deckList)
     deckArray.push(tmpDeck)
-
   })
-  
 
-
-
-  div.classList.add('flex_Center_row');
-  div.insertAdjacentHTML('beforeend',homeTemplate)
-  let grid = div.querySelector('#listDeck') as HTMLDivElement;
   deckArray.forEach( ele => {
     let content= `
     <div class="flex_Center_row">
@@ -34,25 +32,26 @@ export const home  = async () =>{
     `
     grid.insertAdjacentHTML('beforeend',content)
     grid.querySelector(`#Deck${ele.id}`)?.addEventListener('click', () => {
-      any(ele);
+      navigationRouter(ele.id);
     })
   })
   return div;
 }
 
 
-const getDecks = async () =>{
+const getDecks = async ():Promise<IDeck[] | null> =>{
   try {
     
     const response = await fetch('http://localhost:8080/api/decks')
-    return await response.json()
+    return await response.json() as IDeck[]
   } catch (error) {
     console.log(error)
+    return null;
   }
   
 }
 
-const any = (deck:Deck) => {
-  alert(deck.id)
-  window.location.hash = '#/deckcreate'
+const navigationRouter = (id: number) => {
+  
+  window.location.hash = `#/deck/${id}`
 }
