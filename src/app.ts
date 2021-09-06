@@ -7,7 +7,7 @@ import Router from './routes/index.routes';
 
 const router = new Router();
 
-window.addEventListener('hashchange', (event : HashChangeEvent)=>{
+window.addEventListener('hashchange', ()=>{
   router.whatRouteIs(window.location.hash)
   // router()
 })

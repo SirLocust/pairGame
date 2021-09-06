@@ -9,7 +9,9 @@ class Router{
 
   rootContaier = document.getElementById('root') as HTMLDivElement;
   constructor(){
-    this.changeRouteTo(home())
+    
+    this.whatRouteIs(window.location.hash)
+
   }
 
   async changeRouteTo(nodo: Promise<HTMLDivElement>): Promise<void>{

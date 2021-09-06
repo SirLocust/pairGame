@@ -1,29 +1,28 @@
-import { ICard } from './../components/interface/Icard';
 import { IDeck} from './../components/interface/IDeck'
 import { Deck } from './../components/deck';
 
 import homeTemplate from '../html/home.html'
 
-export const home  = async () =>{
+export const home  = async ():Promise<HTMLDivElement> =>{
   
-  let div = document.createElement('div')
+  const div = document.createElement('div')
   div.classList.add('flex_Center_row');
   div.insertAdjacentHTML('beforeend',homeTemplate)
-  let grid = div.querySelector('#listDeck') as HTMLDivElement;
+  const grid = div.querySelector('#listDeck') as HTMLDivElement;
 
-  let deckListJson = await getDecks();
+  const deckListJson = await getDecks();
   if(!deckListJson){
     return div;
   }
-  let deckArray:Deck[] = [];
+  const deckArray:Deck[] = [];
   
   deckListJson.forEach( (ele) => {
-    let tmpDeck = new Deck(ele.title,ele.id,ele.deckList)
+    const tmpDeck = new Deck(ele.title,ele.id,ele.deckList)
     deckArray.push(tmpDeck)
   })
 
   deckArray.forEach( ele => {
-    let content= `
+    const content= `
     <div class="flex_Center_row">
       <div class="vDeck flex_Center_row" id="Deck${ele.id}">
         <p>${ele.title}</p>

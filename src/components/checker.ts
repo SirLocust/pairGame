@@ -2,18 +2,21 @@ import { Card } from "./card";
 import { Deck } from "./deck";
 import soundFail from '../assets/sound/failSound.wav'
 import soundGood from '../assets/sound/goodSound.ogg'
+import Score from "./score";
 export class Checker{
 
   count: number = 0;
-  card = new Card('0','0',-1);
+  card:Card = {} as Card 
   deck: Deck;
   deckHTML: HTMLDivElement;
   failSound : HTMLAudioElement = new Audio(soundFail);
   goodSound : HTMLAudioElement = new Audio(soundGood);
+  score:Score;
   
-  constructor(deck:Deck, deckHTML: HTMLDivElement){
+  constructor(deck:Deck, deckHTML: HTMLDivElement, score: Score){
     this.deck = deck;
     this.deckHTML = deckHTML;
+    this.score = score
     console.log(soundFail)
     deckHTML.addEventListener('click', (event) => {
       this.checking(event);
@@ -73,6 +76,7 @@ export class Checker{
       preCard?.classList.add('card_off')
       preCard?.children[0].classList.remove('card_content')
       this.count = 0;
+      this.score.checkScore();
   }
   private wrongPairSelected(cardHtml:HTMLElement){
         this.failSound.play();
@@ -84,5 +88,7 @@ export class Checker{
         },600)
         this.count = 0;
   }
+
+  
 
 }

@@ -3,25 +3,25 @@ import { Card } from "./card";
 
 export class Deck{
 
-  deck: Card[];
+  listCard: Card[];
   title: string
   id: number
   constructor( title: string, id: number,list :ICard[]){
     this.title = title
     this.id = id;
-    this.deck = this.deckFromJson(list);
+    this.listCard = this.deckFromJson(list);
   }
 
   getDeck(): Card[]{
-    return this.deck;
+    return this.listCard;
   }
 
   addDeck(moreCards:Card[]):void {
-    this.deck = [...this.deck,...moreCards]
+    this.listCard = [...this.listCard,...moreCards]
   }
 
   addCard(card:Card): void{
-    this.deck = [...this.deck,card]
+    this.listCard = [...this.listCard,card]
   }
 
   getCard(id:string): Card {
@@ -29,7 +29,7 @@ export class Deck{
     return card[0];
   }
   shuffled(): void{
-    this.deck = [...this.deck].sort( () => Math.random() - 0.5)
+    this.listCard = [...this.listCard].sort( () => Math.random() - 0.5)
   }
 
   deckFromJson(list :ICard[]):Card[]{
@@ -38,5 +38,8 @@ export class Deck{
       tmpDeck.push(new Card(pairValue,content,id))
     })
     return tmpDeck;
+  }
+  getMiddle():number{
+    return this.listCard.length / 2
   }
 }
